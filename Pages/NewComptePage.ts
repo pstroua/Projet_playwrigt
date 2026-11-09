@@ -10,8 +10,8 @@ export class LoginPom{
     elements={
         username:()=>this.page.getByRole("textbox",{ name:"Votre nom complet"}),
         email:()=>this.page.getByRole("textbox",{ name:"Votre@email.com"}),
-        motdepass:()=>this.page.getByRole("textbox",{ name:"********"}),
-        Confirmpass:()=>this.page.getByRole("textbox",{ name:"********"}),
+        motdepass:()=>this.page.getByRole("textbox",{ name:"********"}).nth(0),
+        Confirmpass:()=>this.page.getByRole("textbox",{ name:"********"}).nth(1),
         registerrbutton:()=>this.page.getByRole("button",{ name:"Créer un compte"}),
         notif:()=>this.page.locator("[role='alert']")
     }
@@ -41,7 +41,7 @@ export class LoginPom{
     async VisibiliteOfMessage(){
         return await this.elements.notif().isVisible()
     }
-    async LoginToApp(u:string,p:string,m:string){
+    async registerToApp(u:string,p:string,m:string){
         await this.setUsername(u)
         await this.setemail(p)
         await this.setmotdepass(m)
