@@ -6,9 +6,12 @@ import { LoginPom} from "../page/Login_pom.page";
 
 import {ConnexionPom } from "../page/connexion_pom.page";
 
+import{NewAnnoncePom} from"../Pages/NewAnnocePom.page";
+
 let lp: LoginPom
 let Cp: ConnexionPom
 let Ac: AcceuilPom
+let NA: NewAnnoncePom
 
 test.beforeEach("setup", async({page})=>{
 
@@ -16,8 +19,11 @@ await page.goto("https://app.thrundrz.com/")
 Cp = new ConnexionPom(page);
 Ac = new AcceuilPom(page);
 lp = new LoginPom(page);
+NA = new NewAnnoncePom(page);
+
 await lp.clickbuttonConnection()
 await expect(page).toHaveURL("https://app.thrundrz.com/login")
+
 
 })
 
@@ -33,10 +39,11 @@ test("connection", {tag:"@pom"}, async({page})=>
    await expect(page).toHaveURL(/\/explorer$/)
    await Ac.clickbutton()
    await expect(page).toHaveURL(/\/annonces\/new$/)
-
-
    
-   
+   const color = await NA.getColor();
+  expect(color).toBe("rgb(21, 101, 192)");
 })
+
+
 
 
