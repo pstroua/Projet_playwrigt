@@ -8,11 +8,13 @@ import {ConnexionPom } from "../page/connexion_pom.page";
 
 import {AnnoncePom } from "../page/ajout_annonce.page";
 
+import{NewAnnoncePom} from"../Pages/NewAnnocePom.page";
 
 let lp: LoginPom
 let Cp: ConnexionPom
 let Ac: AcceuilPom
 let Ap: AnnoncePom
+let NA: NewAnnoncePom
 
 test.beforeEach("setup", async({page})=>{
 
@@ -21,8 +23,11 @@ Cp = new ConnexionPom(page);
 Ac = new AcceuilPom(page);
 lp = new LoginPom(page);
 Ap = new AnnoncePom(page);
+NA = new NewAnnoncePom(page);
+
 await lp.clickbuttonConnection()
 await expect(page).toHaveURL("https://app.thrundrz.com/login")
+
 
 })
 
@@ -46,6 +51,10 @@ test("connection", {tag:"@pom"}, async({page})=>
   
    
    
+   const color = await NA.getColor();
+  expect(color).toBe("rgb(21, 101, 192)");
 })
+
+
 
 
