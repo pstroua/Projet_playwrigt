@@ -16,7 +16,16 @@ export class NewAnnoncePom{
         nbrplaces:()=>this.page.locator("#nombre_places"),
         annéedeconstruction:()=>this.page.locator("#annee_construction"),
         suivantButton:()=>this.page.locator("#btn-next-step"),
-        precedentButton:()=>this.page.locator("#btn-prev-step")
+        precedentButton:()=>this.page.locator("#btn-prev-step"),
+        Equipement: () => this.page.locator('[id^="chip-equipement"]'),
+        prixJour:()=>this.page.locator("#prix_jour"),
+        prixDemijour:()=>this.page.locator("#prix_demi_jour"), 
+        prixheure:()=>this.page.locator("#prix_heure"),
+        caution:()=>this.page.locator("#caution"),
+        moyendep:()=>this.page.locator("#moyens_paiement")
+        
+    
+       
     }
 
     async getColor(numero: number) {
@@ -35,6 +44,10 @@ export class NewAnnoncePom{
   async settypeEmbarcation(texte: string){
          await this.elements.typeEmbarcation().filter({ hasText: texte }).click()
     };
+
+      async settypeEquiment(texte: string){
+         await this.elements.Equipement().filter({ hasText: texte }).click()
+    };
   async setcategorie(texte: string){
        await this.elements.categorie().filter({ hasText: texte }).click()
     };
@@ -51,6 +64,8 @@ export class NewAnnoncePom{
     async setprecedentButton(){
         await this.elements.precedentButton().click()
     };
+
+
    
 
 
