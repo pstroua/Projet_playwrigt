@@ -36,12 +36,24 @@ test("connection", {tag:"@pom"}, async({page})=>
    await Cp.SaisirUsername("rouaibra@gmail.com")
    await Cp.Saisirpassword("rouaibra")
    await Cp.clickbutton()
+   await page.waitForTimeout(3000)
    await expect(page).toHaveURL(/\/explorer$/)
    await Ac.clickbutton()
+   await page.waitForTimeout(3000)
    await expect(page).toHaveURL(/\/annonces\/new$/)
    
    const color = await NA.getColor();
   expect(color).toBe("rgb(21, 101, 192)");
+
+  await NA.settitre("Beau voilier");
+  await NA.setdescription("Très bon état");
+  await NA.setcategorie()
+  await NA.settypeEmbarcation();
+  await NA.setnbrplaces("5");
+  await NA.setannéedeconstruction("2020");
+  await NA.setsuivantButton();
+  await page.waitForTimeout(3000)
+
 })
 
 
