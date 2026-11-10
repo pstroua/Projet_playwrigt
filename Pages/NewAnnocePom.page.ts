@@ -25,6 +25,15 @@ export class NewAnnoncePom{
         créneau :()=>this.page.locator('[id^="chip-creneau-"]'),
         permisRequisOui: () => this.page.locator("#toggle-permis-requis-oui"),
         permisRequisNon: () => this.page.locator("#toggle-permis-requis-non"),
+        Equipement: () => this.page.locator('[id^="chip-equipement"]'),
+        prixJour:()=>this.page.locator("#prix_jour"),
+        prixDemijour:()=>this.page.locator("#prix_demi_jour"), 
+        prixheure:()=>this.page.locator("#prix_heure"),
+        caution:()=>this.page.locator("#caution"),
+        moyendep:()=>this.page.locator("#moyens_paiement")
+        
+    
+       
     }
 
     async getColor(numero: number) {
@@ -42,6 +51,10 @@ export class NewAnnoncePom{
 
   async settypeEmbarcation(texte: string){
          await this.elements.typeEmbarcation().filter({ hasText: texte }).click()
+    };
+
+      async settypeEquiment(texte: string){
+         await this.elements.Equipement().filter({ hasText: texte }).click()
     };
   async setcategorie(texte: string){
        await this.elements.categorie().filter({ hasText: texte }).click()
@@ -92,5 +105,27 @@ export class NewAnnoncePom{
         }
     };
    
+
+    async setprixJour(u:string){
+        await this.elements.prixJour().fill(u)
+    };
+
+  async setdemiJour(u:string){
+        await this.elements.prixDemijour().fill(u)
+    };
+
+  async setprixheure(u:string){
+        await this.elements.prixheure().fill(u)
+    };
+
+ async caution(u:string){
+        await this.elements.caution().fill(u)
+    };
+
+async moyendeP(u:string){
+        await this.elements.moyendep().fill(u)
+    };
+    
+
 
 }
