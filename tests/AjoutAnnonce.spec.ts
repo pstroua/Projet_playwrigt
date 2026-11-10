@@ -51,7 +51,7 @@ test("connection", {tag:"@pom"}, async({page})=>
   expect(Ap.elements.step()).toBeVisible()
 
    await page.waitForTimeout(3000)
-   
+
    const color2 = await NA.getColor(2);
   expect(color2).toBe("rgb(21, 101, 192)");
 
@@ -66,6 +66,19 @@ test("connection", {tag:"@pom"}, async({page})=>
 
    const color3 = await NA.getColor(3);
   expect(color3).toBe("rgb(21, 101, 192)");
+
+await NA.setlongueur("12");
+await NA.setlargeur("4");
+await NA.setcarburant("Diesel");
+await NA.setconsommation("20");
+await NA.setmotorisation("150 cv");
+await NA.setcréneau("Journée complète");
+await NA.setpermisRequis(true);
+await NA.setsuivantButton();
+await page.waitForTimeout(3000)
+
+const color4 = await NA.getColor(4);
+expect(color4).toBe("rgb(21, 101, 192)");
 
 })
 
