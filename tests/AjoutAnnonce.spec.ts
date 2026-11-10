@@ -45,25 +45,27 @@ test("connection", {tag:"@pom"}, async({page})=>
    await Ac.clickbutton()
    await page.waitForTimeout(3000)
    await expect(page).toHaveURL(/\/annonces\/new$/)
-   await Ap.clickbuttonImage("/Users/ibrahimasorydiallo/Documents/Projet_playwrigt/assets/Alimentaire.jpg")
+   //await Ap.clickbuttonImage("C:\Users\bough\Desktop\FormationLogwire\Projet_Playwright\assets\Alimentaire.jpg")
+   await Ap.clickbuttonImage("C:\\Users\\bough\\Desktop\\FormationLogwire\\Projet_Playwright\\assets\\Alimentaire.jpg")
    await Ap.clickbuttonSuivant()
   expect(Ap.elements.step()).toBeVisible()
 
-
-  
+   await page.waitForTimeout(3000)
    
-   
-   const color = await NA.getColor();
-  expect(color).toBe("rgb(21, 101, 192)");
+   const color2 = await NA.getColor(2);
+  expect(color2).toBe("rgb(21, 101, 192)");
 
   await NA.settitre("Beau voilier");
   await NA.setdescription("Très bon état");
-  await NA.setcategorie()
-  await NA.settypeEmbarcation();
+  await NA.setcategorie('Yacht');
+  await NA.settypeEmbarcation('Voilier');
   await NA.setnbrplaces("5");
   await NA.setannéedeconstruction("2020");
   await NA.setsuivantButton();
   await page.waitForTimeout(3000)
+
+   const color3 = await NA.getColor(3);
+  expect(color3).toBe("rgb(21, 101, 192)");
 
 })
 
