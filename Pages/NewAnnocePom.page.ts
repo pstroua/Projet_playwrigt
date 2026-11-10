@@ -7,7 +7,8 @@ export class NewAnnoncePom{
     }
 
     elements={
-       numero1: () => this.page.getByTestId("step-circle-1"),
+      step: (n: number) => this.page.getByTestId(`step-circle-${n}`),
+
         titre:()=>this.page.locator("#titre"),
         description:()=>this.page.locator("#description"),
         typeEmbarcation: () => this.page.locator('[id^="chip-type-embarcation"]'),
@@ -18,12 +19,11 @@ export class NewAnnoncePom{
         precedentButton:()=>this.page.locator("#btn-prev-step")
     }
 
-    async getColor(){
-    return await this.elements.numero1().evaluate(
-      (el) => getComputedStyle(el).backgroundColor
-    );
-    
-  }
+    async getColor(numero: number) {
+  return await this.elements.step(numero).evaluate(
+    (el) => getComputedStyle(el).backgroundColor
+  );
+}
     async settitre(u:string){
         await this.elements.titre().fill(u)
     };
@@ -32,11 +32,11 @@ export class NewAnnoncePom{
         await this.elements.description().fill(u)
     };
 
-  async settypeEmbarcation(){
-        await this.elements.typeEmbarcation().click()
+  async settypeEmbarcation(texte: string){
+         await this.elements.typeEmbarcation().filter({ hasText: texte }).click()
     };
-  async setcategorie(){
-        await this.elements.categorie().click()
+  async setcategorie(texte: string){
+       await this.elements.categorie().filter({ hasText: texte }).click()
     };
      async setnbrplaces(u:string){
         await this.elements.nbrplaces().fill(u)
